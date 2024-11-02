@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Franklin Delano Roosevelt</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            padding-top: 80px; /* Espacio para el menú fijo */
+        }
+        header {
+            background-color: #333; /* Fondo oscuro para el menú */
+            color: #f4f4f4; /* Texto claro para mejor contraste */
+            padding: 1rem;
+            text-align: center;
+            position: fixed; /* Menú fijo */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #f4f4f4; /* Color de texto claro */
+            text-decoration: none;
+            font-weight: 700;
+            padding: 10px 15px;
+        }
+        nav ul li.selected a {
+            background-color: #000000; /* Fondo gris para el elemento seleccionado */
+            border-radius: 5px;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333; /* Mismo fondo oscuro que el menú */
+            color: #f4f4f4; /* Texto claro para mejor contraste */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Instituto Franklin Delano Roosevelt</h1>
+        <nav>
+            <ul>
+                <li class="selected"><a href="index.html">Inicio</a></li>
+                <li><a href="ofertas-academicas.html">Ofertas Académicas</a></li>
+                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                <li><a href="promocion2024.html">Promoción 2024</a></li>
+                <li><a href="instalaciones.html">Instalaciones</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>¡Bienvenidos!</h2>
+            <p>
+                El <strong>Instituto Franklin Delano Roosevelt</strong> de Puerto Cortés, Honduras, es una institución educativa gubernamental comprometida con la excelencia académica y el desarrollo integral de sus estudiantes.
+            </p>
+            <p>
+                Ofrecemos una amplia gama de programas académicos, con opciones de estudio tanto en jornadas matutinas como vespertinas, así como fines de semana a través del programa ISEMED.
+            </p>
+            <h3>Misión y Visión</h3>
+            <p>
+                Nuestra misión es formar estudiantes con un alto nivel académico, habilidades críticas y valores éticos que les permitan contribuir positivamente a la sociedad. Aspiramos a ser un referente en educación inclusiva y de calidad en la región.
+            </p>
+            <h3>Imágenes de Nuestras Instalaciones</h3>
+            <img src="C:\Users\JOSE REYES\Desktop\Proyecto de diseño\historiafdr\pruebadebanner.PNG" alt="Aulas del Instituto Franklin Delano Roosevelt">
+            <img src="C:\Users\JOSE REYES\Desktop\Proyecto de diseño\historiafdr\fotocolegio1.jpeg" alt="Actividades Extracurriculares en el Instituto">
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Instituto Franklin Delano Roosevelt - Puerto Cortés, Honduras</p>
+    </footer>
+</body>
+</html>
