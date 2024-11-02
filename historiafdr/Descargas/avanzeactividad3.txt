@@ -1,3 +1,0 @@
-import net.sf.jasperreports.engine.JasperPrint;
-public JasperPrint reporteTodoProducto() {
-    Connection cone = null;
