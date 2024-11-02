@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promo 2024 - Instituto Franklin Delano Roosevelt</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos del modal */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.4); 
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            max-width: 500px; 
+            text-align: center;
+            animation: slideIn 0.3s;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Estilos para la cuadrícula de estudiantes */
+        .promocion-item-2024 {
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .promocion-item-2024 img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .promocion-item-2024:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+        }
+
+        .promocion-item-2024:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 5px solid transparent;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .promocion-item-2024:hover:before {
+            border-color: rgba(255, 215, 0, 1);
+        }
+
+       
+        .search-container {
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .promocion-item-2024 {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Instituto Franklin Delano Roosevelt</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="ofertas-academicas.html">Ofertas Académicas</a></li>
+                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                <li class="selected"><a href="promocion2024.html">Promo 2024</a></li>
+                <li><a href="instalaciones.html">Instalaciones</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Nuestra Promo 2024</h2>
+            <div class="search-section">
+                <h3>Busca a un compañero</h3>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Ingresa el nombre" oninput="filtrarEstudiantes()">
+                </div>
+            </div>
+            <div class="promocion-grid-2024" id="promocion-grid-2024">
+                <!-- La cuadrícula de estudiantes se generará aquí con JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Instituto Franklin Delano Roosevelt - Puerto Cortés</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h4 id="modal-name"></h4>
+            <p id="modal-phrase"></p>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <script>
+        const estudiantes = {
+            "Erwin Ordoñez": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/images/erwin.jpg.jpeg", // Cambia la ruta según corresponda
+                frase: "Persigue tus sueños sin mirar atrás.",
+                
+            },
+            "Abigail Cardona": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/images/abi.jpeg",
+                frase: "El éxito es la suma de pequeños esfuerzos.",
+                
+            },
+            "Astrid Chavez": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/images/astrid.jpeg",
+                frase: "Cree en ti y todo será posible.",
+                
+            },
+            "Rachele Murillo": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/images/rachelemurillo.jpeg",
+                frase: "La perseverancia es la clave del éxito.",
+                descripcion: "Futuro ingeniero mecánico."
+            },
+            "Erick Garcia": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/images/erick.jpeg",
+                frase: "Cada día es una nueva oportunidad.",
+                
+            },
+            "Arnoldo Lopez": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/images/arnoldo.jpeg",
+                frase: "La confianza en uno mismo es el primer secreto del éxito.",
+          
+            },
+            "Ashly Varela": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/historiafdr/ashlyvarela.jpeg",
+                frase: "No hay límites, solo metas.",
+            
+            },
+            "Ashly Herrera": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/historiafdr/ashlyherrera.jpeg",
+                frase: "El futuro pertenece a quienes creen en la belleza de sus sueños.",
+                
+            },
+            "Meilin Alvarado": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/historiafdr/meilin.jpeg",
+                frase: "Hazlo con pasión o no lo hagas.",
+                descripcion: "Aficionado a la fotografía."
+            },
+            "Lohany Ortiz": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/historiafdr/Lohany.jpeg",
+                frase: "La actitud es la pintura del alma.",
+                
+            },
+            "Angie Alvarado": {
+                img: "file:///C:/Users/JOSE%20REYES/Desktop/Proyecto%20de%20dise%C3%B1o/historiafdr/Descargas/angie.jpeg",
+                frase: "Cada paso cuenta en el camino hacia el éxito.",
+               
+            },
+        };
+
+        // Generar cuadrícula de estudiantes dinámicamente
+        const gridContainer = document.getElementById('promocion-grid-2024');
+        function generarCuadricula(estudiantesFiltrados) {
+            gridContainer.innerHTML = ''; // Limpiar cuadrícula
+            for (const nombre in estudiantesFiltrados) {
+                const estudianteDiv = document.createElement('div');
+                estudianteDiv.className = 'promocion-item-2024';
+                estudianteDiv.onclick = () => mostrarModal(nombre);
+                
+                const img = document.createElement('img');
+                img.src = estudiantesFiltrados[nombre].img;
+                img.alt = nombre;
+
+                const p = document.createElement('p');
+                p.textContent = nombre;
+
+                estudianteDiv.appendChild(img);
+                estudianteDiv.appendChild(p);
+                gridContainer.appendChild(estudianteDiv);
+            }
+        }
+
+        // Inicializar cuadrícula con todos los estudiantes
+        generarCuadricula(estudiantes);
+
+        function filtrarEstudiantes() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const estudiantesFiltrados = {};
+            
+            for (const nombre in estudiantes) {
+                if (nombre.toLowerCase().includes(query)) {
+                    estudiantesFiltrados[nombre] = estudiantes[nombre];
+                }
+            }
+            generarCuadricula(estudiantesFiltrados);
+        }
+
+        function mostrarModal(nombre) {
+            const modal = document.getElementById('myModal');
+            if (estudiantes[nombre]) {
+                document.getElementById('modal-name').textContent = nombre;
+                document.getElementById('modal-phrase').textContent = estudiantes[nombre].frase;
+                document.getElementById('modal-description').textContent = estudiantes[nombre].descripcion;
+                modal.style.display = "block";
+            } else {
+                alert("Estudiante no encontrado.");
+            }
+        }
+
+        function cerrarModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+
+        // Cerrar el modal si se hace clic fuera de él
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
